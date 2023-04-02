@@ -36,18 +36,49 @@
 # print(Medical_condition3.get_name())
 # print(Medical_condition3._Medical_condition__name)
 
-import time
-def dec(func):
-    def time1(*args, **kwargs):
-        x = time.time()
-        result = func(*args, **kwargs)
-        y = time.time()
-        print(y - x)
-        return result
-    return time1
-@dec
-def timetime():
-    print('Uwaga')
-timetime()
+# import time
+# def dec(func):
+#     def time1(*args, **kwargs):
+#         x = time.time()
+#         result = func(*args, **kwargs)
+#         y = time.time()
+#         print(y - x)
+#         return result
+#     return time1
+# @dec
+# def timetime():
+#     print('Uwaga')
+# timetime()
+#
+
+#
+#
+# def guard_zero(func):
+#     def inner(x, y):
+#         if y == 0:
+#             print("Cannot divide by 0.")
+#             return('Fail')
+#         return func(x, y)
+#     return inner
+#
+# @guard_zero
+# def divide(x, y):
+#     return x / y
+#
+# print(divide(3, 0))
 
 
+
+def decor(func):
+    def shitty_f(x):
+        if x == 666 or x == 13:
+            return('Hail, Baphomet')
+        return func(x)
+    return shitty_f
+
+@decor
+def cause(x):
+    return('You are blessed')
+
+x = int(input('Enter the number'))
+print(cause(x))
