@@ -81,6 +81,8 @@ def cause(x):
     return('You are blessed')
 
 x = int(input('Enter the number'))
+
+
 print(cause(x))
 
 ef time1(*args, **kwargs):
