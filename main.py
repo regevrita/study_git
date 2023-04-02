@@ -82,13 +82,6 @@ def cause(x):
 
 x = int(input('Enter the number'))
 
-
 print(cause(x))
 
 ef time1(*args, **kwargs):
-        x = time.time()
-        result = func(*args, **kwargs)
-        y = time.time()
-        print(y - x)
-        return result
-    return time1
