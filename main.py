@@ -38,18 +38,3 @@ print(Medical_condition3._Medical_condition__name)
 
 
 
-
-
-def decor(func):
-    def shitty_f(x):
-        if x == 666 or x == 13:
-            return('Hail, Baphomet')
-        return func(x)
-    return shitty_f
-
-@decor
-def cause(x):
-    return('You are blessed')
-
-x = int(input('Enter the number'))
-print(cause(x))
