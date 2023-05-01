@@ -11,17 +11,18 @@ import pytest
 
 
 
+#Тест сравнивает параметры из api и с веб-страницы
 GEO_URL = 'http://api.openweathermap.org/geo/1.0/direct'
 WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather'
 WEATHER_WEB_URL = 'http://openweathermap.org/'
 STATUS_OK = 200
 WEATHER_API_APPID = '40b38098e34cc96139b85134c113fe3b' # ключ дается сайтом перманентно при регистрации
 NAME_CITY = 'Reykjavík, IS'
-PARAM_WEATHER_KEY = 'wind'
-PARAM_WEATHER_VALUE = 'speed'
+PARAM_WEATHER_KEY = 'main' #тут и ниже можно подставить любой параметр и его селектор
+PARAM_WEATHER_VALUE = 'temp'
 SEARCH_OPTION_SELECTOR = '//span[contains(text(), "Reykjavík, IS")]'
 DISPLAYED_CITY_SELECTOR = '//h2[contains(text(), "Reykjavík, IS")]'
-DISPLAYED_PARAM_SELECTOR = 'div[class="wind-line"]'
+DISPLAYED_PARAM_SELECTOR = 'span[class="heading"]'
 
 @pytest.fixture(scope='module')
 def driver():
@@ -62,6 +63,7 @@ def api_weather(api_geo):
     assert PARAM_WEATHER_KEY in response_weather_data.keys()
     return response_weather_data
 
+
 @pytest.fixture()
 def api_param(api_weather):
     response_weather_by_key = api_weather[PARAM_WEATHER_KEY]
@@ -98,5 +100,5 @@ def web_param(driver):
     return final_displayed_param
 
 def test_matching_param(api_param, web_param):
-    assert abs(web_param-api_param) <= 2
+    assert abs(web_param-api_param) <= 1
     print('Matched successfully')
